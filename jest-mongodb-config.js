@@ -1,12 +1,12 @@
 /*eslint-disable*/
 
 module.exports = {
-    mongodbMemoryServerOptions: {
-        binary: {
-            version: '4.0.3',
-            skipMD5: true
-        },
-        autoStart: false,
-        instance: {}
-    }
-}
+  mongodbMemoryServerOptions: {
+    binary: {
+      version: "6.0.2",
+      skipMD5: true,
+    },
+    autoStart: false,
+    instance: {},
+  },
+};
