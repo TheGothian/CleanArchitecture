@@ -1,0 +1,5 @@
+.vscode
+.DS_Sre
+/node_modules
+/dist
+/coverage
