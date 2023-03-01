@@ -1,6 +1,6 @@
 import { Collection, MongoClient } from "mongodb";
 
-class DbConnection {
+export class DbConnection {
     private url?: string;
 
     private client?: MongoClient;
@@ -29,6 +29,19 @@ class DbConnection {
         }
 
         return db.collection(name);
+    }
+
+    async getInstance() {
+        if (!this.client && this.url) {
+            await this.connect(this.url);
+        }
+
+        const db = this.client?.db();
+
+        if (!db) {
+            throw new Error('MongoDB client is not connected');
+        }
+        return db;
     }
 }
 

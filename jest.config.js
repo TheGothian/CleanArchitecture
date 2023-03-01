@@ -97,7 +97,7 @@ module.exports = {
     "@application/(.*)": "<rootDir>/src/application/$1",
     "@infrastructure/(.*)": "<rootDir>/src/infrastructure/$1",
     "@main/(.*)": "<rootDir>/src/main/$1",
-    "@test/(.*)": "<rootDir>/src/test/$1",
+    "@tests/(.*)": "<rootDir>/tests/$1",
   },
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
@@ -134,7 +134,7 @@ module.exports = {
   // rootDir: undefined,
 
   // A list of paths to directories that Jest should use to search for files in
-  roots: ["<rootDir>/test"],
+  roots: ["<rootDir>/tests/"],
 
   // Allows you to use a custom runner instead of Jest's default test runner
   // runner: "jest-runner",

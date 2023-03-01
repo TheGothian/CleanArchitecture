@@ -1,11 +1,12 @@
+import authenticationRoutes from '@main/routes/authentication.routes';
+import userRoutes from '@main/routes/user.routes';
 import { Express, Router } from 'express';
 
-export default (app: Express) => {
+export const setupRoutes = (app: Express) => {
     const router = Router();
 
-    app.get('/health', (req, res) => {
-        res.status(200).json({ message: 'ok' })
-    })
+    authenticationRoutes(router);
+    userRoutes(router);
 
     app.use(router);
 } 
