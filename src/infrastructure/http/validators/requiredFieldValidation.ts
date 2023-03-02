@@ -1,14 +1,14 @@
 import { MissingParamError } from "../errors/missingParamError";
-import { Validation } from "../interfaces/Validation";
+import { FieldValidation } from "./fieldValidation";
 
-export class RequiredFieldValidation implements Validation {
+export class RequiredFieldValidation extends FieldValidation {
     constructor(
-        public readonly fieldName: string,
-    ) { }
+        fieldName: string,
+    ) { super(fieldName) }
 
     validate(input: any): Error | null {
-        if (!input[this.fieldName]) {
-            return new MissingParamError(this.fieldName);
+        if (!input[this._fieldName]) {
+            return new MissingParamError(this._fieldName);
         }
         return null;
     }

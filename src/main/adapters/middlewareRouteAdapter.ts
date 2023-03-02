@@ -1,8 +1,12 @@
 import { HttpRequest } from "@infrastructure/http/interfaces/HttpRequest";
 import { BaseMiddleware } from "@infrastructure/http/middleware/baseMiddleware";
+import { container } from "@infrastructure/loaders/diContainer";
 import { NextFunction, Request, Response } from "express";
+import { interfaces } from "inversify";
 
-export default (baseMiddleware: BaseMiddleware) => async (req: Request, res: Response, next: NextFunction) => {
+export default (
+    baseMiddlewareConstructor: interfaces.Newable<BaseMiddleware>,
+) => async (req: Request, res: Response, next: NextFunction) => {
 
     const httpRequest: HttpRequest = {
         body: req.body,
@@ -10,6 +14,8 @@ export default (baseMiddleware: BaseMiddleware) => async (req: Request, res: Res
         headers: req.headers,
         userId: req.userId,
     };
+
+    const baseMiddleware: BaseMiddleware = container.resolve(baseMiddlewareConstructor);
 
     try {
         const httpResponse = await baseMiddleware.handle(httpRequest);

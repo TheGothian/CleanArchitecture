@@ -2,13 +2,19 @@ import { ForbiddenError } from "@application/errors/forbiddenError";
 import { ITokenRepository } from "@application/interfaces/repositories/IToken.repository";
 import { IUserRepository } from "@application/interfaces/repositories/IUser.repository";
 import { ILoginUseCase, loginRequest } from "@application/interfaces/useCases/authentication/ILoginUseCase";
+import { BINDINGS } from "@infrastructure/loaders/bindings";
+import { inject, injectable } from "inversify";
 import { makeId } from "../../util/tokenGenerator";
 
+@injectable()
 export class LoginUseCase implements ILoginUseCase {
     private tokenRepo: ITokenRepository;
     private userRepo: IUserRepository;
 
-    constructor(userRepository: IUserRepository, tokenRepository: ITokenRepository) {
+    constructor(
+        @inject(BINDINGS.UserRepository) userRepository: IUserRepository,
+        @inject(BINDINGS.TokenRepository) tokenRepository: ITokenRepository
+    ) {
         this.userRepo = userRepository;
         this.tokenRepo = tokenRepository;
     }

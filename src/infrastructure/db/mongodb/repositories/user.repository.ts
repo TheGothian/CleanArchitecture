@@ -1,11 +1,13 @@
 import { CreateUserRepository, IUserRepository, Query } from "@application/interfaces/repositories/IUser.repository";
 import { User } from "@domain/entities/user";
+import { injectable } from "inversify";
 import { Collection, ObjectId } from "mongodb";
 import DbConnection from "../helpers/db-connection";
 import { mapDocument } from "../helpers/mapper";
 
 const COLLECTION_NAME = "Users";
 
+@injectable()
 export class UserRepository implements IUserRepository {
     async getAll(query?: Query<User> | undefined): Promise<User[]> {
         const userCollection = await UserRepository.getCollection();

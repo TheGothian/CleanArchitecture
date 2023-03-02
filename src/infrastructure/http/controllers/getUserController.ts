@@ -1,12 +1,17 @@
 import { IGetUsersUseCase } from "@application/interfaces/useCases/users/IGetUsersUseCase";
+import { BINDINGS } from "@infrastructure/loaders/bindings";
+import { inject, injectable } from "inversify";
 import { ok } from "../helpers/httpResponseHelper";
 import { HttpRequest } from "../interfaces/HttpRequest";
 import { HttpResponse } from "../interfaces/HttpResponse";
 import { BaseController } from "./baseController";
 
+@injectable()
 export class GetUserController extends BaseController {
 
-    constructor(private getUserUseCase: IGetUsersUseCase) {
+    constructor(
+        @inject(BINDINGS.GetUsersUseCase) private getUserUseCase: IGetUsersUseCase
+    ) {
         super();
     }
 

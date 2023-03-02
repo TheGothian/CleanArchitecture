@@ -1,15 +1,18 @@
 import { IAuthenticationUseCase } from "@application/interfaces/useCases/authentication/IAuthenticationUseCase";
+import { BINDINGS } from "@infrastructure/loaders/bindings";
+import { inject, injectable } from "inversify";
 import { InvalidAuthTokenError } from "../errors/InvalidAuthTokenError";
 import { badRequest, forbidden, ok } from "../helpers/httpResponseHelper";
 import { HttpRequest } from "../interfaces/HttpRequest";
 import { HttpResponse } from "../interfaces/HttpResponse";
 import { BaseMiddleware } from "./baseMiddleware";
 
+@injectable()
 export class AuthMiddleware extends BaseMiddleware {
 
 
     constructor(
-        private useCase: IAuthenticationUseCase
+        @inject(BINDINGS.AuthenticationUseCase) private useCase: IAuthenticationUseCase
     ) {
         super();
     }

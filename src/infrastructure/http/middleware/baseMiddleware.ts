@@ -1,8 +1,9 @@
+import { injectable } from "inversify";
 import { serverError } from "../helpers/httpResponseHelper";
 import { HttpRequest } from "../interfaces/HttpRequest";
 import { HttpResponse } from "../interfaces/HttpResponse";
 
-
+@injectable()
 export abstract class BaseMiddleware {
 
     abstract execute(httpRequest: HttpRequest): Promise<HttpResponse>;
