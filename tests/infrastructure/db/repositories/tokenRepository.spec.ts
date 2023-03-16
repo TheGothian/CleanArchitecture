@@ -1,3 +1,6 @@
+import "reflect-metadata";
+
+
 import dbConnection from "@infrastructure/db/mongodb/helpers/db-connection";
 import { TokenRepository } from "@infrastructure/db/mongodb/repositories";
 import env from "@main/config/env";

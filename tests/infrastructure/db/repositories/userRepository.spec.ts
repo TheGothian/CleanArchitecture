@@ -1,3 +1,6 @@
+import "reflect-metadata";
+
+
 import { User } from "@domain/entities/user";
 import dbConnection from "@infrastructure/db/mongodb/helpers/db-connection";
 import { UserRepository } from "@infrastructure/db/mongodb/repositories/user.repository";
